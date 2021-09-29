@@ -25,6 +25,9 @@ jobs:
     
     environment:
       name: DEPLOY_PRODUCTION
+
+    env:
+      REACT_APP_TESTING: ${{ secrets.AWS_S3_URL }}
   
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,10 +46,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - run: yarn run build
-
-      - name: View Directory
-        run: l ./build
-              
+            
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -55,7 +55,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Copy files to the production website with the AWS CLI
+        working-directory: ./build
         run: |
-          aws s3 sync ./build ${{ secrets.AWS_S3_URL }}
+          aws s3 sync . ${{ secrets.AWS_S3_URL }}
 
       
