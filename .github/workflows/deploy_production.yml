@@ -39,7 +39,7 @@ jobs:
         run: echo "Hello, world! ${GITHUB_REPOSITORY}"
         
       - name: Run 2
-        run: echo "Hello, world! ${{ secret.AWS_REGION }}"
+        run: echo "Hello, world! ${{ secrets.AWS_REGION }}"
       
       - name: Run 3
         run: echo "Hello, world! ${{ process.env.AWS_REGION }}"
