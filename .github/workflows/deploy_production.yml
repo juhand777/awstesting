@@ -34,7 +34,7 @@ jobs:
         run: echo "Hello, world! ${GITHUB_REPOSITORY}"
         
       - name: Run 2
-        run: echo "Hello, world! ${{AWS_S3_URL}} "
+        run: echo "Hello, world! ${{DEPLOY_PRODUCTION.AWS_S3_URL}} "
         
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
