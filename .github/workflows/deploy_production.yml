@@ -45,7 +45,7 @@ jobs:
       - run: yarn run build
 
       - name: View Directory
-        run: ll ./build
+        run: l ./build
               
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
