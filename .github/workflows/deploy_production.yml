@@ -10,6 +10,7 @@ on:
   pull_request:
     branches: [ main ]
 
+  
 
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
@@ -30,7 +31,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "Hello, world! ${AWS_REGION} ${AWS_S3_URL} "
+        run: echo "Hello, world! ${GITHUB_REPOSITORY} ${env.AWS_S3_URL} "
         
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
