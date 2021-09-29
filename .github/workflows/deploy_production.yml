@@ -40,10 +40,7 @@ jobs:
         
       - name: Run 2
         run: echo "Hello, world! ${{ secrets.AWS_REGION }}"
-      
-      - name: Run 3
-        run: echo "Hello, world! ${{ process.env.AWS_REGION }}"
-        
+              
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
