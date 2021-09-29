@@ -57,6 +57,6 @@ jobs:
       - name: Copy files to the production website with the AWS CLI
         working-directory: ./build
         run: |
-          aws s3 sync . ${{ secrets.AWS_S3_URL }}
+          aws s3 sync . ${{ secrets.AWS_S3_URL }} --delete
 
       
