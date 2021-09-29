@@ -34,17 +34,17 @@ jobs:
         run: echo "Hello, world! ${GITHUB_REPOSITORY}"
         
       - name: Run 2
-        run: echo "Hello, world! ${ env.AWS_S3_URL }"
+        run: echo "Hello, world! $AWS_S3_URL"
         
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${AWS_REGION}
+          aws-region: $AWS_REGION
 
       - name: Copy files to the production website with the AWS CLI
         run: |
-          aws s3 sync . ${AWS_S3_URL}
+          aws s3 sync . $AWS_S3_URL
 
       
