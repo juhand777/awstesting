@@ -14,9 +14,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   # workflow_dispatch:
 
-env:
-  MY_AWS_REGION: AWS_REGION
-  MY_AWS_S3_URL: AWS_S3_URL
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -32,17 +30,17 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "Hello, world! ${{ env.MY_AWS_REGION }} ${{ env.MY_AWS_S3_URL }} "
+        run: echo "Hello, world! ${AWS_REGION} ${AWS_S3_URL} "
         
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.MY_AWS_REGION }}
+          aws-region: ${AWS_REGION}
 
       - name: Copy files to the production website with the AWS CLI
         run: |
-          aws s3 sync . ${{ secrets.MY_AWS_S3_URL }}
+          aws s3 sync . ${AWS_S3_URL}
 
       
